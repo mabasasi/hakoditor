@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Validators\DatabaseValidator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
