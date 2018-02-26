@@ -41,7 +41,7 @@ class CreateInitialTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('hako_article', function (Blueprint $table) {
+        Schema::create('article_hako', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('hako_id');
             $table->unsignedInteger('article_id');
