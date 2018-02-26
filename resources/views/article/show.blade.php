@@ -19,32 +19,34 @@
 
 
     <div class="row">
-        <div class="col">
+        <div class="col asd">
 
             <h1>{{ $article->title ?? 'No Title' }}</h1>
 
-            {{--各 はこ の配置--}}
-            @foreach($article->hakos as $hako)
-                {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
+            <div class="hako-area">
+                {{--各 はこ の配置--}}
+                @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
+                    {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
 
-                {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}
-                {{--<div class="hako" data-content="{{ $hako->content }}">--}}
-                {{--{{ $hako->content }}--}}
-                {{--</div>--}}
-                {{--@endcomponent--}}
+                    {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}
+                    {{--<div class="hako" data-content="{{ $hako->content }}">--}}
+                    {{--{{ $hako->content }}--}}
+                    {{--</div>--}}
+                    {{--@endcomponent--}}
 
-                <div class="card margin bg-light">
-                    <div class="card-body">
-                        <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
-                            {{ $hako->content }}
+                    <div class="card margin bg-light">
+                        <div class="card-body">
+                            <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
+                                {{ $hako->content }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
 
 
-            {{--最下部要素--}}
-            <div id="dummy-last"></div>
+                {{--最下部要素--}}
+                <div id="dummy-last"></div>
+            </div>
 
             {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
             {{ Form::button('保存', ['id' => 'exec', 'class' => 'btn btn-primary']) }}
@@ -66,6 +68,8 @@
     $(function() {
         // card -> card-body -> hako
 
+        $('.hako-area').sortable();
+
         // submit
         $(document).on('click', '#exec', function() {
             var form = $('form#handling');
@@ -75,13 +79,13 @@
             var cnt = 1;
             doms.each(function(i, html) {
                 var dom = $(html);
-                var id       = dom.data('id') || 0;
-                var content  = dom.data('content') || '';
-                var priority = cnt ++;
+                var id      = dom.data('id') || 0;
+                var content = dom.data('content') || '';
+                var order   = cnt ++;
 
                 form.append('<input type="hidden" name="id['+i+']" value="'+id+'">');
                 form.append('<input type="hidden" name="content['+i+']" value="'+content+'">');
-                form.append('<input type="hidden" name="priority['+i+']" value="'+priority+'">');
+                form.append('<input type="hidden" name="order['+i+']" value="'+order+'">');
             });
 
             form.submit();

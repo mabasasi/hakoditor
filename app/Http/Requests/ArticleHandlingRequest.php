@@ -12,9 +12,9 @@ class ArticleHandlingRequest extends FormRequest {
 
     public function rules(){
         return [
-            'id.*'       => 'exists_or_null:articles,id',
-            'content.*'  => 'nullable|string|max:65535',
-            'priority.*' => 'required|integer|min:0|max:65535',
+            'id.*'      => 'exists_or_null:articles,id',
+            'content.*' => 'nullable|string|max:65535',
+            'order.*'   => 'required|integer|min:0|max:65535',
         ];
     }
 
