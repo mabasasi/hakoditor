@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('page.home');
 })->name('home');
 
-Route::get('/article/{name}', 'ViewController');
+Route::get('/blog/{name}', 'ViewController')->name('view');
 
+Route::get('/articles', 'ArticleController@index')->name('articles.index');
 
 
