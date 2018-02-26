@@ -16,3 +16,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/article/{name}', 'ViewController');
+
+
+
