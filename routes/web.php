@@ -17,6 +17,6 @@ Route::get('/', function () {
 
 Route::get('/blog/{name}', 'ViewController')->name('view');
 
-Route::get('/articles', 'ArticleController@index')->name('articles.index');
+Route::resource('articles', 'ArticleController');
 
 

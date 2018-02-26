@@ -23,6 +23,8 @@ namespace App\Models;
  */
 class Article extends Model {
 
+    protected $guarded = [];
+
     public function getHtmlContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 

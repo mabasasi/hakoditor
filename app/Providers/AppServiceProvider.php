@@ -21,8 +21,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         \Form::macro('openResource', function(string $routeName, $id) {
-            $method = ($id) ? 'POST' : 'PUT';
-            $name   = ($id) ? 'store' : 'update';
+            $method = ($id) ? 'PUT'    : 'POST';
+            $name   = ($id) ? 'update' : 'store';
 
             $params = [];
             if ($id) {

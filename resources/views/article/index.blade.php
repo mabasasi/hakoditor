@@ -25,7 +25,14 @@
                             </a>
                         </td>
                         <td>{{ $article->hakos->count() }}</td>
-                        <td></td>
+                        <td>
+                            <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-tr btn-success" role="button" aria-pressed="true">
+                                <i class="fas fa-edit"></i> 編集
+                            </a>
+                            <a href="{{ route('articles.destroy', ['article' => $article->id]) }}" class="btn btn-tr btn-danger" role="button" aria-pressed="true">
+                                <i class="fas fa-edit"></i> 削除
+                            </a>
+                        </td>
                     </tr>
                 @empty
                     <p>No Data.</p>

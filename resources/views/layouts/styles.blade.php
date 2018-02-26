@@ -15,6 +15,10 @@
         margin: 0.5rem 0;
     }
 
+    .btn-tr {
+        line-height: 16px;
+    }
+
     /*fixed bootstrap*/
     .nav-tabs {
         margin: 0 0 0.5rem 0;
