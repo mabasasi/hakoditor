@@ -26,8 +26,8 @@ class Hako extends Model {
         return $this->belongsTo('App\Models\HakoType');
     }
 
-    public function users() {
-        return $this->belongsToMany('App\Models\Article')->withPivot('order');
-    }
+//    public function users() {
+//        return $this->belongsToMany('App\Models\Article')->withPivot('order');
+//    }
 
 }

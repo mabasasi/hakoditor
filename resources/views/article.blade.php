@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <h1>{{ $article->name ?? 'No Title' }}</h1>
+
     {!! nl2br($article->html_content) !!}
 
     <hr>

@@ -9,17 +9,18 @@ class Article extends Model {
     public function getHtmlContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 
-        $html = $this->hakos->map(function($item, $key) {
-            return $item->html_content;
-        })->implode('');
+        $html = $this->hakos
+            ->sortBy('params.order')
+            ->map(function($item, $key) {
+                return $item->html_content;
+            })->implode('');
         return $html;
     }
 
     public function hakos() {
-        return $this->belongsToMany('App\Models\Hako')->withPivot('order');
+        return $this->belongsToMany('App\Models\Hako')
+            ->withPivot('order')->as('params')
+            ->withTimestamps();
     }
-
-
-
 
 }
