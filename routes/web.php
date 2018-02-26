@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('page.home');
 })->name('home');
+
+Route::get('/article/{name}', 'ViewController');
