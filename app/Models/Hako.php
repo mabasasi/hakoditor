@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Consts;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\Hako
