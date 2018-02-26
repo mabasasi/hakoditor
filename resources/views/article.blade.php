@@ -1,6 +1,6 @@
 @extends('layouts.hakoditor')
 
-@section('content')
+@section('container')
 
     <h1>{{ $article->name ?? 'No Title' }}</h1>
 

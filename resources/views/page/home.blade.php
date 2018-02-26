@@ -1,6 +1,6 @@
 @extends('layouts.hakoditor')
 
-@section('content')
+@section('container')
     <div class="row">
         <div class="col">
 

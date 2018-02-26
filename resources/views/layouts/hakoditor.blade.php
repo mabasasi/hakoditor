@@ -11,12 +11,12 @@
 
     <!-- Main Content -->
     @if (View::hasSection('container'))
-        <div class="@yield('container')">
-            @yield('content')
-        </div>
-    @else
         <div class="container">
-            @yield('content')
+            @yield('container')
+        </div>
+    @elseif(View::hasSection('container-fluid'))
+        <div class="container-fluid">
+            @yield('container-fluid')
         </div>
     @endif
 @endsection
