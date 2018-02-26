@@ -27,6 +27,8 @@ use App\Consts;
  */
 class Hako extends Model {
 
+    protected $guarded = [];
+
     public function getHtmlContentAttribute() {
         // HTML変換したコンテンツを作成
         $content = $this->content;

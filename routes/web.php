@@ -20,3 +20,12 @@ Route::get('/blog/{name}', 'ViewController')->name('view');
 Route::resource('articles', 'ArticleController');
 
 
+Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
+
+
+
+
+
+
+
+

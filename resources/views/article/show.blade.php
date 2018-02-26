@@ -46,7 +46,9 @@
             {{--最下部要素--}}
             <div id="dummy-last"></div>
 
-
+            {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
+            {{ Form::button('保存', ['id' => 'exec', 'class' => 'btn btn-primary']) }}
+            {{ Form::close() }}
             {{--<hr>--}}
 
             {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}
@@ -64,6 +66,28 @@
     $(function() {
         // card -> card-body -> hako
 
+        // submit
+        $(document).on('click', '#exec', function() {
+            var form = $('form#handling');
+
+            // 各種オブジェクトから値を抜き取ってフォームを作成する
+            var doms = $('.hako');
+            var cnt = 1;
+            doms.each(function(i, html) {
+                var dom = $(html);
+                var id       = dom.data('id') || 0;
+                var content  = dom.data('content') || '';
+                var priority = cnt ++;
+
+                form.append('<input type="hidden" name="id['+i+']" value="'+id+'">');
+                form.append('<input type="hidden" name="content['+i+']" value="'+content+'">');
+                form.append('<input type="hidden" name="priority['+i+']" value="'+priority+'">');
+            });
+
+            form.submit();
+        });
+
+
 
 
         // はこ -> エディタ
@@ -78,7 +102,7 @@
             closeEditor($(this));
         });
 
-        // 全 はこ を閉じる
+        // 全 はこ を閉じる or submit
         $(window).keydown(function(event) {
             if(event.altKey) {
                 if(event.keyCode === 13) {
@@ -88,6 +112,11 @@
                     doms.each(function(i, dom) {
                         closeEditor($(dom));
                     });
+
+                    if (doms.length === 0) {
+                        $('#exec').click();
+                    }
+
                     return false;
                 }
             }
