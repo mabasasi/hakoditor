@@ -8,7 +8,14 @@
 
 <div class="form-group{{ isset($class) ? ' '.$class : '' }}">
     @isset($label)
-        <label for="{{ $name }}" class="col-form-label">{{ $label }}</label>
+        <label for="{{ $name }}" class="col-form-label">
+            {{ $label }}
+            @isset($header)
+                <div class="float-right">
+                    {{ $header }}
+                </div>
+            @endisset
+        </label>
     @endif
     <div class="{{ ($thisError) ? ' is-invalid' : (($hasError) ? ' is-valid' : '') }}">
         {{ $slot }}
