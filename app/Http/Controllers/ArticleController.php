@@ -22,9 +22,8 @@ class ArticleController extends Controller {
         return $this->update($request, new Article());
     }
 
-    public function show(Article $article)
-    {
-        //
+    public function show(Article $article)    {
+        return view('article.show')->with(compact('article'));
     }
 
 

@@ -9,7 +9,7 @@
         </div>
     @endisset
 
-    <div class="card-body">
+    <div class="card-body{{ isset($bodyClass) ? ' '.$bodyClass : '' }}">
         {{ $slot }}
     </div>
 </div>
