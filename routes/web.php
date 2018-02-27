@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/blog/{name}', 'ViewController')->name('view');
 
 Route::resource('articles', 'ArticleController');
+Route::resource('tags', 'TagController');
 
 
 Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');

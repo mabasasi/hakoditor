@@ -8,26 +8,26 @@ class Tag extends Model {
 
     public function getTagPathAttribute() {
         $paths = [$this->name];
-        if ($this->tag_group_id) {
-            $group = $this->tagGroup;
-            array_unshift($paths, $group->name);
-
-            while(true) {
-                $group = $group->parentTagGroup;
-                $name  = $group->name;
-                if ($group and in_array($name, $paths)) {
-                    array_unshift($paths, $name);
-                } else {
-                    break;
-                }
+        $tag   = $this->tag;
+        while (true) {
+            $tag  = $tag->parentTag;
+            $name = $tag->name;
+            if ($name and in_array($paths, $name)) {
+                array_unshift($paths, $name);
+            } else {
+                break;
             }
         }
 
         return $this->implode('/', $paths);
     }
 
-    public function tagGroup() {
-        return $this->belongsTo('App\Models\tagGroup');
+    public function parentTag() {
+        return $this->belongsTo('App\Models\Tag', 'parent_tag_id');
+    }
+
+    public function childTags() {
+        return $this->hasMany('App\Models\Tag', 'parent_tag_id');
     }
 
 }

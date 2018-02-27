@@ -14,26 +14,15 @@ class CreateTagTable extends Migration
     public function up()
     {
 
-        Schema::create('tag_groups', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->unsignedInteger('parent_tag_group_id')->nullable();
-
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('parent_tag_id')->references('id')->on('tag_groups');
-        });
-
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('tag_group_id')->nullable();
+            $table->unsignedInteger('parent_tag_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('tag_group_id')->references('id')->on('tag_groups');
+            $table->foreign('parent_tag_id')->references('id')->on('tags');
         });
 
         Schema::create('article_tag', function (Blueprint $table) {
@@ -59,6 +48,5 @@ class CreateTagTable extends Migration
     {
         Schema::dropIfExists('article_tag');
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('tag_groups');
     }
 }
