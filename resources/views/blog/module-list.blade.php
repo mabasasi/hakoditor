@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col">
 
-            <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="article-caption" style="background-color: whitesmoke;">
+            <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="article-caption">
 
                 <div>
                     <h3>{{ $article->title }}</h3>
@@ -28,8 +28,6 @@
 
         </div>
     </div>
-
-    <hr>
 @endforeach
 
 {{ $articles->appends(Request::query())->links() }}

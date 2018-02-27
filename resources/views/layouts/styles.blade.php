@@ -93,16 +93,26 @@
     }
 
 
+
+
+
+
     .article-caption {
         display: block;
         width: 100%;
 
         text-decoration: none;
         color: black;
+
+        margin: 15px 0;
+        padding: 10px;
+        background-color: whitesmoke;
     }
     .article-caption:hover {
         text-decoration: none;
         color: black;
+
+        background-color: floralwhite;
     }
 
     .article-caption h3 {

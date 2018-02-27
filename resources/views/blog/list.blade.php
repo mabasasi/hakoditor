@@ -3,15 +3,13 @@
 
 @section('container')
     <div class="row">
-        <div class="col-xl-8" style="background-color: gray;">
+        <div class="col-xl-8">
             @include('blog.module-list')
         </div>
 
-        <div class="col-xl-4" style="background-color: lavenderblush;">
+        <div class="col-xl-4">
             @include('blog.module-webmaster')
-
-            <hr>
-            その他いろいろ...
+            @include('blog.module-webmaster')
         </div>
     </div>
 @endsection
