@@ -72,6 +72,11 @@ class Article extends Model {
             ->withTimestamps();
     }
 
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag')
+            ->withTimestamps();
+    }
+
     public function articleType() {
         return $this->belongsTo('App\Models\ArticleType');
     }
