@@ -56,13 +56,40 @@
 {{--ブログ用--}}
 <style>
 
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",HelveticaNeue,
+        "Segoe UI", "游ゴシック体", YuGothic, "Yu Gothic M", "游ゴシック Medium", "Yu Gothic Medium",
+        "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN W3", HiraKakuProN-W3, "ヒラギノ角ゴ ProN",
+        "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo,
+        Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+        background-color: gainsboro;
+    }
+
+
     article {
         margin: 15px 0;
-        padding: 10px
+        padding: 20px;
+        background-color: whitesmoke;
     }
 
     article h1 {
         margin: 10px 0;
+    }
+
+
+    .module-area {
+        margin: 15px 0;
+        padding: 10px;
+        background-color: whitesmoke;
+    }
+
+
+
+
+
+    #time-badges span {
+        margin: 0 5px;
     }
 
 

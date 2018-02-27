@@ -2,23 +2,18 @@
 <div class="row">
     <div class="col">
 
-        <article style="background: lightyellow">
+        <article>
 
             <div id="time-badges">
                 <span>
                     <i class="far fa-clock"></i> {{ optional($article->created_at)->toDateString() }}
                 </span>
-                <span>
-                    <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
-                </span>
-            </div>
 
-            <h1>{{ $article->title ?? 'No Title.' }}</h1>
-
-            <div id="article-buttons">
-                @foreach($article->tags as $tag)
-                    <a href="" class="btn btn-sm btn-outline-secondary">{{ $tag->name }}</a>
-                @endforeach
+                @if($article->is_update)
+                    <span>
+                        <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
+                    </span>
+                @endif
 
                 @auth
                     <div class="float-right">
@@ -27,6 +22,14 @@
                         </a>
                     </div>
                 @endauth
+            </div>
+
+            <h1>{{ $article->title ?? 'No Title.' }}</h1>
+
+            <div id="article-buttons">
+                @foreach($article->tags as $tag)
+                    <a href="" class="btn btn-sm btn-outline-secondary">{{ $tag->name }}</a>
+                @endforeach
             </div>
 
             <hr>

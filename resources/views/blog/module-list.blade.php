@@ -12,9 +12,11 @@
                         <span>
                             <i class="far fa-clock"></i> {{ optional($article->created_at)->toDateString() }}
                         </span>
-                        <span>
-                            <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
-                        </span>
+                        @if($article->is_update)
+                            <span>
+                                <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
+                            </span>
+                        @endif
                     </div>
                 </div>
 
