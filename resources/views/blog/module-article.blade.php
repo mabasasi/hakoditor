@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col">
 
-        <article>
+        <article style="background: lightyellow">
 
             <div id="time-badges">
                 <span>
@@ -16,15 +16,17 @@
             <h1>{{ $article->title ?? 'No Title.' }}</h1>
 
             <div id="article-buttons">
-                <a href="" class="btn btn-sm btn-outline-secondary">たぐ1</a>
-                <a href="" class="btn btn-sm btn-outline-secondary">たぐ2</a>
-                <a href="" class="btn btn-sm btn-outline-secondary">たぐ3</a>
+                @foreach($article->tags as $tag)
+                    <a href="" class="btn btn-sm btn-outline-secondary">{{ $tag->name }}</a>
+                @endforeach
 
-                <div class="float-right">
-                    <a href="{{ route('articles.show', ['name' => $article->id]) }}" class="btn btn-sm btn-outline-success" role="button" aria-pressed="true">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                </div>
+                @auth
+                    <div class="float-right">
+                        <a href="{{ route('articles.show', ['name' => $article->id]) }}" class="btn btn-sm btn-outline-success" role="button" aria-pressed="true">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
+                @endauth
             </div>
 
             <hr>

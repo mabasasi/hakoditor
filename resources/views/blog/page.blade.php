@@ -3,7 +3,7 @@
 
 @section('container')
     <div class="row">
-        <div class="col-xl-8" style="background-color: lightyellow;">
+        <div class="col-xl-8" style="background-color: gray;">
             @include('blog.module-article')
         </div>
 
