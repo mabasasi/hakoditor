@@ -42,4 +42,8 @@ class Article extends Model {
             ->withTimestamps();
     }
 
+    public function articleType() {
+        return $this->belongsTo('App\Models\ArticleType');
+    }
+
 }
