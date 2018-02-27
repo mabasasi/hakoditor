@@ -1,10 +1,11 @@
 @extends('layouts.hakoditor')
+@section('title', '記事管理')
 
 @section('container-fluid')
     <div class="row">
         <div class="col">
             @component('parts.general-card-component')
-                <a href="{{ route('articles.create') }}" class="btn btn-warning" role="button" aria-pressed="true">
+                <a href="{{ route('articles.create') }}" class="btn btn-dark" role="button" aria-pressed="true">
                     <i class="fas fa-plus-square"></i> 新規作成
                 </a>
             @endcomponent

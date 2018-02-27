@@ -9,7 +9,11 @@
         {{--<!-- Left Element -->--}}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('articles.index') }}">記事一覧</a>
+                <a class="nav-link" href="{{ route('articles.index') }}">記事管理</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('tags.index') }}">タグ管理</a>
             </li>
         </ul>
 

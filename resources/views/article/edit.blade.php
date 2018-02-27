@@ -1,10 +1,11 @@
 @extends('layouts.hakoditor')
+@section('title', '記事編集')
 
 @section('container')
 
     @component('parts.general-card-component')
         @slot('header')
-            記事情報 編集 or 作成
+            記事編集
         @endslot
 
         {{ Form::openResource('articles', $article->id ?? 0) }}

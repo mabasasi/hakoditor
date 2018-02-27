@@ -13,6 +13,7 @@ use App\Libraries\ModelTrait\RelationTrait;
 use App\Libraries\ModelTrait\SearchQueryTrait;
 use App\Libraries\ModelTrait\SelectBoxArrayTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 
 /**
  * App\Models\Model
@@ -37,4 +38,8 @@ class Model extends \Illuminate\Database\Eloquent\Model {
     use SearchQueryTrait;
     use SelectBoxArrayTrait;
     use SoftDeletes;
+
+    public function translate(Request $request) {
+        return $request->except('_token');
+    }
 }
