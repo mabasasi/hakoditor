@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Article;
 use App\Models\Hako;
+use App\Models\Tag;
 
 class TestDataSeeder extends Seeder
 {
@@ -39,6 +40,17 @@ class TestDataSeeder extends Seeder
         $article->hakos()->attach($hako_a, ['order' => 2]);
         $article->hakos()->attach($hako_b, ['order' => 3]);
         $article->hakos()->attach($hako_c, ['order' => 1]);
+
+        $tag_bg = Tag::create([
+            'name' => '文学',
+        ]);
+
+        $tag_ns = Tag::create([
+            'name' => '夏目漱石',
+            'parent_tag_id' => $tag_bg->id,
+        ]);
+
+        $article->tags()->attach([$tag_ns->id]);
 
     }
 }
