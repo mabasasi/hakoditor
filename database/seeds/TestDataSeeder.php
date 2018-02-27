@@ -16,6 +16,7 @@ class TestDataSeeder extends Seeder
 
         $article = Article::create([
             'title' => 'テスト記事',
+            'url' => 'neko',
         ]);
 
         $hako_a = Hako::create([

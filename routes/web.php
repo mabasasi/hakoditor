@@ -12,5 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('page.home');
+})->name('home');
+
+Route::get('/blog/{name}', 'ViewController')->name('view');
+
+Route::resource('articles', 'ArticleController');
+
+
+Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
+
+
+
+
+
+
+
+

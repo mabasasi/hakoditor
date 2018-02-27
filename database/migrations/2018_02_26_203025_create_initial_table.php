@@ -35,6 +35,7 @@ class CreateInitialTable extends Migration
 
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('url')->unique()->nullable();
             $table->string('title')->nullable();
 
             $table->timestamps();
