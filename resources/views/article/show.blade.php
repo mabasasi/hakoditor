@@ -1,54 +1,75 @@
 @extends('layouts.hakoditor')
 @section('title', $article->title)
 
-@section('container')
+@php($container = request('extend') ? 'container-fluid' : 'container')
+@section($container)
 
-    @component('parts.general-card-component')
-        {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
+    <div class="row">
+        <div class="col">
 
-        <button id="exec" class="btn btn-primary" type="button">
-            <i class="far fa-save"></i> 保存
-        </button>
+            @component('parts.general-card-component')
+                {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
 
-        <div class="float-right">
-            <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-outline-success" role="button" aria-pressed="true">
-                <i class="fas fa-edit"></i> 情報編集
-            </a>
+                <button id="exec" class="btn btn-primary" type="button">
+                    <i class="far fa-save"></i> 保存
+                </button>
 
-            <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">
-                <i class="fas fa-window-maximize"></i> 表示
-            </a>
+                <div class="float-right">
+                    <a href="{{ route('articles.show', ['article' => $article->id, 'extend' => request('extend') xor true]) }}" class="btn btn-outline-dark mr-3" area-pressed="true">
+                        {{ request('extend') ? 'プレビュー無効化' : 'プレビュー有効化' }}
+                    </a>
 
-            <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul><li>クリックで編集</li><li>[Alt + Enter]で新たな はこ の作成</li><li>ドラッグで並び替え</li><li>[Ctrl + S]で保存</li><ul>">
-                <i class="fas fa-question-circle"></i>
-            </button>
+                    <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-outline-success" role="button" aria-pressed="true">
+                        <i class="fas fa-edit"></i> 情報編集
+                    </a>
+
+                    <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">
+                        <i class="fas fa-window-maximize"></i> 表示
+                    </a>
+
+                    <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul><li>クリックで編集</li><li>[Alt + Enter]で新たな はこ の作成</li><li>ドラッグで並び替え</li><li>[Ctrl + S]で保存</li><ul>">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                </div>
+
+                {{ Form::close() }}
+            @endcomponent
+
+            <h1>{{ $article->title ?? 'No Title' }}</h1>
+
+            <hr>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="{{ request('extend') ? 'col-6' : 'col' }}">
+
+            <div class="hako-area">
+                {{--各 はこ の配置--}}
+                @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
+                    {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
+
+                    <div class="card margin bg-light block">
+                        <div class="card-body">
+                            <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
+                                {!! nl2br($hako->content) !!}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+                {{--最下部要素--}}
+                <div id="dummy-last"></div>
+            </div>
         </div>
 
-        {{ Form::close() }}
-    @endcomponent
-
-
-    <h1>{{ $article->title ?? 'No Title' }}</h1>
-
-    <hr>
-
-    <div class="hako-area">
-        {{--各 はこ の配置--}}
-        @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
-            {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
-
-            <div class="card margin bg-light block">
-                <div class="card-body">
-                    <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
-                        {!! nl2br($hako->content) !!}
-                    </div>
-                </div>
+        @if(request('extend'))
+            <div class="col-6">
+                @include('blog.module-article', ['article' => $article])
             </div>
-        @endforeach
-
-
-        {{--最下部要素--}}
-        <div id="dummy-last"></div>
+        @endif
     </div>
 
 @endsection
