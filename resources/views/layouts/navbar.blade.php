@@ -7,17 +7,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         {{--<!-- Left Element -->--}}
-        {{--<ul class="navbar-nav mr-auto">--}}
-            {{--@can('admin')--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="{{ route('test') }}">テストページ</a>--}}
-                {{--</li>--}}
-            {{--@endcan--}}
-
-            {{--<li class="nav-item">--}}
-                {{--<a class="nav-link" href="{{ route('treeking.index') }}">めも帳</a>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('articles.index') }}">記事一覧</a>
+            </li>
+        </ul>
 
         {{--<!-- Right Element -->--}}
         {{--<ul class="navbar-nav">--}}
