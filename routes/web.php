@@ -27,6 +27,9 @@ Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('
 
 
 
+Route::redirect('/dashboard', '/')->name('dashboard');
 
 
+
+Auth::routes();
 
