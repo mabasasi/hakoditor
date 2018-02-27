@@ -15,7 +15,7 @@ class ViewController extends Controller {
         })->with('hakos')->firstOrFail();
 
         // 記事ジェネレート
-        return view('article')->with(compact('article'));
+        return view('blog.page')->with(compact('article'));
     }
 
 }

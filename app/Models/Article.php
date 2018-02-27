@@ -66,6 +66,21 @@ class Article extends Model {
         return null;
     }
 
+    public function getUpdatedAtAttribute($value) {
+        $hako = $this->hakos->sortByDesc('updated_at')->first();
+        return optional($hako)->updated_at;
+    }
+
+    public function getIsUpdate() {
+        $create = $this->created_at;
+        $update = $this->updated_at;
+        if ($create and $update) {
+            return !$create->isSameDay($update);
+        }
+
+        return false;
+    }
+
     public function hakos() {
         return $this->belongsToMany('App\Models\Hako')
             ->withPivot('order')->as('params')
