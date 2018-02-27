@@ -5,16 +5,29 @@
 
             <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="article-caption" style="background-color: whitesmoke;">
 
-                {{ $article->title }}
+                <div>
+                    <h3>{{ $article->title }}</h3>
 
-                <span>
-                    <i class="far fa-clock"></i> {{ optional($article->created_at)->toDateString() }}
-                </span>
-                <span>
-                    <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
-                </span>
+                    <div class="float-right">
+                        <span>
+                            <i class="far fa-clock"></i> {{ optional($article->created_at)->toDateString() }}
+                        </span>
+                        <span>
+                            <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div>
+                    タグ：{{ $article->hasManyImplode('tags', 'name', ', ') ?? '-' }}
+                </div>
             </a>
 
         </div>
     </div>
+
+    <hr>
 @endforeach
+
+{{ $articles->appends(Request::query())->links() }}

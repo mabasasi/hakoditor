@@ -78,4 +78,8 @@
         color: black;
     }
 
+    .article-caption h3 {
+        display: inline-block;
+    }
+
 </style>

@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 class BlogController extends Controller {
 
     public function index() {
-        return view('blog.home');
-    }
-
-    public function list() {
         $articles = Article::paginate(10);
         return view('blog.list')->with(compact('articles'));
     }
