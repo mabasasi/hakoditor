@@ -32,6 +32,31 @@ class AppServiceProvider extends ServiceProvider
             return \Form::open(['method' => $method, 'url' => route($routeName.'.'.$name, $params)]);
         });
 
+        \Form::macro('toggleCheckbox', function($name, $label, $value = 1, $checked = null, $options = [], $label_options = []) {
+            $options['autocomplete'] = 'off';
+
+            if ($checked) {
+                $cls = data_get($label_options, 'class');
+                $cls = ($cls) ? $cls.' active' : 'active';
+                data_set($label_options, 'class', $cls);
+            }
+
+            $label_attrs = ['label'];
+            foreach($label_options as $key => $option) {
+                $label_attrs[] = $key.'="'.$option.'"';
+            }
+            $label_attr = implode(' ', $label_attrs);
+
+            $html  = '<span class="btn-group-toggle" data-toggle="buttons">';
+            $html .= '<'.$label_attr.'>';
+            $html .= \Form::checkbox($name, $value, $checked, $options);
+            $html .= $label;
+            $html .= '</label>';
+            $html .= '</span>';
+
+            return $html;
+        });
+
     }
 
     /**

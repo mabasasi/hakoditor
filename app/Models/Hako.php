@@ -35,7 +35,7 @@ use App\Consts;
  */
 class Hako extends Model {
 
-    protected $guarded = [];
+    protected $fillable = ['title', 'hako_type_id', 'content'];
 
 //    public function getHtmlContentAttribute() {
 //        // HTML変換したコンテンツを作成

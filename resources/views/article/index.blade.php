@@ -25,6 +25,7 @@
                     <th>変換方法</th>
                     <th>公開</th>
                     <th>はこ数</th>
+                    <th>タグ</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -41,6 +42,7 @@
                         <td>{{ optional($article->articleType)->name ?? '-' }}</td>
                         <td>{!! $article->is_public ? '<i class="fas fa-check"></i>' : '-' !!}</td>
                         <td>{{ $article->hakos->count() }}</td>
+                        <td>{{ $article->hasManyImplode('tags', 'name', ', ') ?? '-' }}</td>
                         <td>
                             <a href="{{ route('articles.show', ['article' => $article->id]) }}" class="btn btn-tr btn-success" role="button" aria-pressed="true">
                                 <i class="fas fa-newspaper"></i> 記事編集

@@ -17,6 +17,9 @@ class TagRequest extends FormRequest {
             'name' => 'required|string|max:32|unique:tags,name,'.$id,
 
             'parent_tag_id' => 'exists_or_null:tags,id',
+
+            // TODO いつか実装
+            //'tag.*' => 'boolean|key_exists',
         ];
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class Tag extends Model {
 
-    protected $guarded = [];
+    protected $fillable = ['name', 'parent_tag_id'];
 
     public function translate(Request $request) {
         $array = $request->except('_token');
@@ -18,11 +18,13 @@ class Tag extends Model {
 
     public function getTagPathAttribute() {
         $paths = [$this->name];
-        $tag   = $this->tag;
-        while ($tag) {
+        $tag   = $this;
+        while (true) {
             $tag  = $tag->parentTag;
+            if (!$tag)  break;
+
             $name = $tag->name;
-            if ($name and in_array($paths, $name)) {
+            if ($name and !in_array($name, $paths)) {
                 array_unshift($paths, $name);
             } else {
                 break;

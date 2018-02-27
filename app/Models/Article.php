@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Consts;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Http\Request;
 
 /**
  * App\Models\Article
@@ -38,7 +39,17 @@ use GrahamCampbell\Markdown\Facades\Markdown;
  */
 class Article extends Model {
 
-    protected $guarded = [];
+    protected $fillable = ['title', 'url', 'article_type_id', 'is_public'];
+
+    public function translate(Request $request) {
+        $array = $request->except('_token');
+
+        $tags = data_get($array, 'tags') ?? [];
+        $keys = array_keys($tags);
+        data_set($array, 'tags', $keys);
+
+        return $array;
+    }
 
     public function getRawContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい

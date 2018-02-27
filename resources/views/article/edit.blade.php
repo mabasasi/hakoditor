@@ -33,6 +33,14 @@
                 {{ Form::checkbox('is_public', '1', old('is_public', $article->is_public), ['class' => 'form-control']) }}
             @endcomponent
 
+            @component('parts.general-card-component')
+                @component('parts.inline-form-component', ['name' => 'tag', 'label' => 'タグ'])
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        {!! Form::toggleCheckbox('tags['.$tag->id.']', $tag->tag_path, '1', old('tags['.$tag->id.']', $article->hasManyContains('tags', $tag->id)), [], ['class' => 'btn btn-outline-secondary']) !!}
+                    @endforeach
+                @endcomponent
+            @endcomponent
+
             @component('parts.group-form-component')
                 {{ Form::submit('保存', ['class' => 'btn btn-primary']) }}
             @endcomponent
