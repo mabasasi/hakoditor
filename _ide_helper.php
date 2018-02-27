@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.35 on 2018-02-26 23:25:08.
+ * Generated for Laravel 5.5.35 on 2018-02-27 23:38:12.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -12914,6 +12914,16 @@ namespace Collective\Html {
         public static function componentCall($method, $parameters)
         {
             return \Collective\Html\FormBuilder::componentCall($method, $parameters);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function openResource($routeName, $id)
+        {
+            return \Collective\Html\FormBuilder::openResource($routeName, $id);
         }
          
     }
