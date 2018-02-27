@@ -3,24 +3,42 @@
 
 @section('container')
 
-    <div class="row">
-        <div class="col">
-
-            <div class="alert alert-info mt-2" role="alert">
-                <ul>
-                    <li>編集したい はこ をクリック!</li>
-                    <li>[Alt + Enter]で確定</li>
-                    <li>[ダブルクリック]で新しい はこ を作成</li>
-                    <li>[ドラッグ]で並び替え</li>
-                </ul>
-            </div>
-
-        </div>
+    <div class="alert alert-info mt-2" role="alert">
+        <ul>
+            <li>編集したい はこ をクリック!</li>
+            <li>[Alt + Enter]で確定</li>
+            <li>[ダブルクリック]で新しい はこ を作成</li>
+            <li>[ドラッグ]で並び替え</li>
+        </ul>
     </div>
 
+    @component('parts.general-card-component')
+        {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
+
+        <button id="exec" class="btn btn-primary" type="button">
+            <i class="fas fa-save"></i> 保存
+        </button>
+
+        <div class="float-right">
+            <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-success" role="button" aria-pressed="true">
+                <i class="fas fa-edit"></i> 編集
+            </a>
+
+            <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">
+                <i class="fas fa-window-maximize"></i> 表示
+            </a>
+
+            <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" data-html="true" title="<ul><li>クリックで編集</li><li>[Alt + Enter]で確定</li><li>ドラッグで並び替え</li><li>ダブルクリックで新規作成</li><ul>">
+                <i class="fas fa-question-circle"></i>
+            </button>
+        </div>
+
+        {{ Form::close() }}
+    @endcomponent
+
 
     <div class="row">
-        <div class="col asd">
+        <div class="col">
 
             <h1>{{ $article->title ?? 'No Title' }}</h1>
 
@@ -49,9 +67,6 @@
                 <div id="dummy-last"></div>
             </div>
 
-            {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
-            {{ Form::button('保存', ['id' => 'exec', 'class' => 'btn btn-primary']) }}
-            {{ Form::close() }}
             {{--<hr>--}}
 
             {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}

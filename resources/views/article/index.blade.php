@@ -38,7 +38,7 @@
                         <td>{{ $article->hakos->count() }}</td>
                         <td>
                             <a href="{{ route('articles.show', ['article' => $article->id]) }}" class="btn btn-tr btn-info" role="button" aria-pressed="true">
-                                <i class="fas fa-caret-right"></i> 表示
+                                <i class="fas fa-window-maximize"></i> 表示
                             </a>
                             <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-tr btn-success" role="button" aria-pressed="true">
                                 <i class="fas fa-edit"></i> 編集

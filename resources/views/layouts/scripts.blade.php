@@ -19,6 +19,8 @@ $(function() {
     $(document).ready(function() {
         // height 最大化
         height_expand();
+
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
 
