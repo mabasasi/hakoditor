@@ -21,6 +21,8 @@
                     <th>#</th>
                     <th>タイトル</th>
                     <th>url</th>
+                    <th>変換方法</th>
+                    <th>公開</th>
                     <th>はこ数</th>
                     <th></th>
                 </tr>
@@ -35,6 +37,8 @@
                                 {{ $article->url ?? $article->id }}
                             </a>
                         </td>
+                        <td>{{ optional($article->articleType)->name ?? '-' }}</td>
+                        <td>{!! $article->is_public ? '<i class="fas fa-check"></i>' : '-' !!}</td>
                         <td>{{ $article->hakos->count() }}</td>
                         <td>
                             <a href="{{ route('articles.show', ['article' => $article->id]) }}" class="btn btn-tr btn-info" role="button" aria-pressed="true">
