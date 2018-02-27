@@ -22,6 +22,16 @@
                 {{ Form::text('url', old('url', $article->url), ['class' => 'form-control']) }}
             @endcomponent
 
+            @component('parts.inline-form-component', ['name' => 'article_type_id', 'label' => '変換方法'])
+                {{ Form::select('article_type_id', \App\Models\ArticleType::selectPluck(true),
+                    old('article_type_id', $article->article_type_id), ['class' => 'form-control']) }}
+            @endcomponent
+
+            @component('parts.inline-form-component', ['name' => 'is_public', 'label' => '公開する'])
+                {{ Form::hidden('is_public', '0') }}
+                {{ Form::checkbox('is_public', '1', old('is_public', $article->is_public), ['class' => 'form-control']) }}
+            @endcomponent
+
             @component('parts.group-form-component')
                 {{ Form::submit('保存', ['class' => 'btn btn-primary']) }}
             @endcomponent

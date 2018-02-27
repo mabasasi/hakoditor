@@ -28,6 +28,7 @@ class ArticleController extends Controller {
 
 
     public function edit(Article $article) {
+        intend();
         return view('article.edit')->with(compact('article'));
     }
 
@@ -36,7 +37,7 @@ class ArticleController extends Controller {
             return $article->fill($request->all())->save();
         });
 
-        return \Redirect::route('articles.index');
+        return \Redirect::intended('articles.index');
     }
 
     public function destroy(Article $article) {
@@ -44,6 +45,6 @@ class ArticleController extends Controller {
             return $article->delete();
         });
 
-        return \Redirect::route('articles.index');
+        return back();
     }
 }

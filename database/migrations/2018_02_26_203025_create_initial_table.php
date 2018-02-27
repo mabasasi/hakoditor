@@ -33,13 +33,28 @@ class CreateInitialTable extends Migration
             $table->foreign('hako_type_id')->references('id')->on('hako_types');
         });
 
+
+
+        Schema::create('article_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url')->unique()->nullable();
             $table->string('title')->nullable();
+            $table->unsignedInteger('article_type_id');
+
+            $table->boolean('is_public')->default(false);
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('article_type_id')->references('id')->on('article_types');
         });
 
         Schema::create('article_hako', function (Blueprint $table) {
@@ -69,6 +84,7 @@ class CreateInitialTable extends Migration
     {
         Schema::dropIfExists('hako_article');
         Schema::dropIfExists('articles');
+        Schema::dropIfExists('article_types');
         Schema::dropIfExists('hakos');
         Schema::dropIfExists('hako_types');
     }

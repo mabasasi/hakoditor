@@ -103,3 +103,38 @@ if (! function_exists('out_if_true')) {
         return ($bool) ? $val : $default;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (!function_exists('intend')) {
+
+    function intend() {
+        $current  = parse_url(url()->full());
+        $previous = parse_url(url()->previous());
+        $intend   = parse_url(session('url.intended'));
+
+        $cur = data_get($current,  'path');
+        $pre = data_get($previous, 'path');
+        $int = data_get($intend,   'path');
+
+        if ($int === null or ($cur !== $pre and $pre !== $int)) {
+            session(['url.intended' => url()->previous()]);
+        }
+    }
+
+}
