@@ -23,7 +23,7 @@
                         <i class="fas fa-edit"></i> 情報編集
                     </a>
 
-                    <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">
+                    <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">
                         <i class="fas fa-window-maximize"></i> 表示
                     </a>
 

@@ -11,6 +11,11 @@ class BlogController extends Controller {
         return view('blog.home');
     }
 
+    public function list() {
+        $articles = Article::paginate(10);
+        return view('blog.list')->with(compact('articles'));
+    }
+
     public function dashboard() {
         return view('page.dashboard');
     }

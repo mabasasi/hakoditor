@@ -65,4 +65,17 @@
         margin: 10px 0;
     }
 
+
+    .article-caption {
+        display: block;
+        width: 100%;
+
+        text-decoration: none;
+        color: black;
+    }
+    .article-caption:hover {
+        text-decoration: none;
+        color: black;
+    }
+
 </style>

@@ -14,11 +14,13 @@
 Auth::routes();
 
 Route::get('/',            'BlogController@index')->name('home');
+Route::get('/list', 'BlogController@list')->name('list');
+
+Route::get('/blog/{name}', 'BlogController@page')->name('blog.view');
+
+
+
 Route::get('/hako-ditor',  'BlogController@dashboard')->middleware('auth')->name('dashboard');
-
-Route::get('/blog/{name}', 'BlogController@page')->name('view');
-
-
 
 Route::prefix('hako-ditor')->group(function() {
 

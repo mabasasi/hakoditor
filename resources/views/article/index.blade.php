@@ -35,7 +35,7 @@
                         <th>{{ $article->id }}</th>
                         <td>{{ $article->title ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-tr btn-info" role="button" aria-pressed="true">
+                            <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-tr btn-info" role="button" aria-pressed="true">
                                 <i class="fas fa-window-maximize"></i> {{ $article->url ?? $article->id }}
                             </a>
                         </td>
