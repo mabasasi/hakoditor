@@ -14,4 +14,8 @@ class Consts
 
     const HAKO_TYPE_TEXT = 1;
 
+    const ARTICLE_TYPE_TEXT     = 1;
+    const ARTICLE_TYPE_HTML     = 2;
+    const ARTICLE_TYPE_MARKDOWN = 3;
+
 }

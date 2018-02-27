@@ -7,12 +7,12 @@
         {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
 
         <button id="exec" class="btn btn-primary" type="button">
-            <i class="fas fa-save"></i> 保存
+            <i class="far fa-save"></i> 保存
         </button>
 
         <div class="float-right">
-            <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-success" role="button" aria-pressed="true">
-                <i class="fas fa-edit"></i> 編集
+            <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-outline-success" role="button" aria-pressed="true">
+                <i class="fas fa-edit"></i> 情報編集
             </a>
 
             <a href="{{ route('view', ['name' => $article->url ?? $article->id]) }}" class="btn btn-info" role="button" aria-pressed="true">

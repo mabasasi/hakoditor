@@ -23,6 +23,17 @@
         padding: 0.5rem;
     }
 
+
+
+
+    input.form-control[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        margin: 6px;
+    }
+
+
+
     /*fixed bootstrap*/
     .nav-tabs {
         margin: 0 0 0.5rem 0;

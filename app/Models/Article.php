@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Consts;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 /**
  * App\Models\Article
@@ -20,26 +22,77 @@ namespace App\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereUrl($value)
  * @mixin \Eloquent
+ * @property int $article_type_id
+ * @property int $is_public
+ * @property-read \App\Models\ArticleType $articleType
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifRequestDate($requestName, $startSchemeNames, $endSchemeNames)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifRequestLike($requestName, $schemeNames, $isStrict = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifRequestOrderBy($key, $requestName = 'order')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifRequestShowTrashed($requestName = 'trashed', $trueValue = true)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifRequestWhere($requestName, $schemeNames, $isStrict = false, $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ifWhere($value, $schemeNames, $operator = '=', $isMultiMode = false, $isStrict = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model requestPaginate($requestName = 'paginate', $default = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model selectPluck($hasNone = false, $closure = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereArticleTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Article whereIsPublic($value)
  */
 class Article extends Model {
 
     protected $guarded = [];
 
-    public function getHtmlContentAttribute() {
+    public function getRawContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 
         $html = $this->hakos
             ->sortBy('params.order')
-            ->map(function($item, $key) {
-                return $item->html_content;
-            })->implode('');
+            ->map(function($hako, $key) {
+                return $hako->content;
+            })->implode(PHP_EOL.PHP_EOL);
+
         return $html;
+    }
+
+    public function getContentAttribute() {
+        // content switcher
+        switch($this->article_type_id) {
+            case Consts::ARTICLE_TYPE_TEXT:
+                return $this->getPlaneTextContent();
+            case Consts::ARTICLE_TYPE_HTML:
+                return $this->getHtmlContent();
+            case Consts::ARTICLE_TYPE_MARKDOWN:
+                return $this->getMarkdownContent();
+        }
+
+        return null;
     }
 
     public function hakos() {
         return $this->belongsToMany('App\Models\Hako')
             ->withPivot('order')->as('params')
             ->withTimestamps();
+    }
+
+    public function articleType() {
+        return $this->belongsTo('App\Models\ArticleType');
+    }
+
+
+
+
+
+    public function getPlaneTextContent() {
+        $html = $this->raw_content;
+        return nl2br($html);
+    }
+
+    public function getHtmlContent() {
+        $html = $this->raw_content;
+        return $html;
+    }
+
+    public function getMarkdownContent() {
+        $html = $this->raw_content;
+        return Markdown::convertToHtml($html);
     }
 
 }

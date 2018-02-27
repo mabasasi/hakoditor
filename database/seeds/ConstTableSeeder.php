@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Article;
+use App\Models\ArticleType;
 use App\Models\Hako;
 use App\Models\HakoType;
 
@@ -24,12 +25,27 @@ class ConstTableSeeder extends Seeder
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        HakoType::create([
-            'id'   => \App\Consts::HAKO_TYPE_TEXT,
+        ArticleType::create([
+            'id'   => \App\Consts::ARTICLE_TYPE_TEXT,
             'name' => 'テキスト',
         ]);
 
+        ArticleType::create([
+            'id'   => \App\Consts::ARTICLE_TYPE_HTML,
+            'name' => 'HTML',
+        ]);
 
+        ArticleType::create([
+            'id'   => \App\Consts::ARTICLE_TYPE_MARKDOWN,
+            'name' => 'Markdown',
+        ]);
+
+
+
+        HakoType::create([
+            'id'   => \App\Consts::ARTICLE_TYPE_TEXT,
+            'name' => 'テキスト',
+        ]);
 
     }
 }

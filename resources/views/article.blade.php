@@ -5,6 +5,6 @@
 
     <h1>{{ $article->title ?? 'No Title' }}</h1>
 
-    {!! \GrahamCampbell\Markdown\Facades\Markdown::convertToHtml($article->html_content) !!}
+    {!! $article->content !!}
 
 @endsection
