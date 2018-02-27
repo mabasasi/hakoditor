@@ -37,20 +37,20 @@ class Hako extends Model {
 
     protected $guarded = [];
 
-    public function getHtmlContentAttribute() {
-        // HTML変換したコンテンツを作成
-        $content = $this->content;
-        if ($content) {
-            switch($this->hako_type_id) {
-                // テキストなら改行処理させる
-                case Consts::HAKO_TYPE_TEXT:
-                    $content .= PHP_EOL;
-                    break;
-            }
-        }
-
-        return $content;
-    }
+//    public function getHtmlContentAttribute() {
+//        // HTML変換したコンテンツを作成
+//        $content = $this->content;
+//        if ($content) {
+//            switch($this->hako_type_id) {
+//                // テキストなら改行処理させる
+//                case Consts::HAKO_TYPE_TEXT:
+//                    $content .= PHP_EOL;
+//                    break;
+//            }
+//        }
+//
+//        return $content;
+//    }
 
     public function hakoType() {
         return $this->belongsTo('App\Models\HakoType');

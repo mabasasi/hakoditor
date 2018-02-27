@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Consts;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 /**
  * App\Models\Article
@@ -38,15 +40,30 @@ class Article extends Model {
 
     protected $guarded = [];
 
-    public function getHtmlContentAttribute() {
+    public function getRawContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 
         $html = $this->hakos
             ->sortBy('params.order')
-            ->map(function($item, $key) {
-                return $item->html_content;
-            })->implode('');
+            ->map(function($hako, $key) {
+                return $hako->content;
+            })->implode(PHP_EOL.PHP_EOL);
+
         return $html;
+    }
+
+    public function getContentAttribute() {
+        // content switcher
+        switch($this->article_type_id) {
+            case Consts::ARTICLE_TYPE_TEXT:
+                return $this->getPlaneTextContent();
+            case Consts::ARTICLE_TYPE_HTML:
+                return $this->getHtmlContent();
+            case Consts::ARTICLE_TYPE_MARKDOWN:
+                return $this->getMarkdownContent();
+        }
+
+        return null;
     }
 
     public function hakos() {
@@ -57,6 +74,25 @@ class Article extends Model {
 
     public function articleType() {
         return $this->belongsTo('App\Models\ArticleType');
+    }
+
+
+
+
+
+    public function getPlaneTextContent() {
+        $html = $this->raw_content;
+        return nl2br($html);
+    }
+
+    public function getHtmlContent() {
+        $html = $this->raw_content;
+        return $html;
+    }
+
+    public function getMarkdownContent() {
+        $html = $this->raw_content;
+        return Markdown::convertToHtml($html);
     }
 
 }
