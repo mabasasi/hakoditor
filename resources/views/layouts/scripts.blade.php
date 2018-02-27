@@ -28,6 +28,25 @@ $(function() {
     });
 
 
+
+    (function($) {
+        $.extend({
+            nl2br: function nl2br(str) {
+                return str.replace(/[\n\r]/g, "<br />");
+            }
+        });
+
+        $.extend({
+            str_count: function str_count(str, part) {
+                return (str) ? (str.match(part) || []).length : 0;
+            }
+        });
+    })(jQuery);
+
+
+
+
+
     ////////////////////////////////////////////////////////////
     /// height 最大化.
     /// target_expand_class_name を指定したクラスをウインドウ最大化させます.

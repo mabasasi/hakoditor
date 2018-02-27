@@ -11,6 +11,7 @@
                     <li>編集したい はこ をクリック!</li>
                     <li>[Alt + Enter]で確定</li>
                     <li>[ダブルクリック]で新しい はこ を作成</li>
+                    <li>[ドラッグ]で並び替え</li>
                 </ul>
             </div>
 
@@ -34,10 +35,10 @@
                     {{--</div>--}}
                     {{--@endcomponent--}}
 
-                    <div class="card margin bg-light">
+                    <div class="card margin bg-light block">
                         <div class="card-body">
                             <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
-                                {{ $hako->content }}
+                                {!! nl2br($hako->content) !!}
                             </div>
                         </div>
                     </div>
@@ -74,6 +75,11 @@
         $(document).on('click', '#exec', function() {
             var form = $('form#handling');
 
+            // 先に、すべてのブロックを閉じておく
+            $('.hako-edit').each(function(i, html) {
+                closeEditor($(html));
+            });
+
             // 各種オブジェクトから値を抜き取ってフォームを作成する
             var doms = $('.hako');
             var cnt = 1;
@@ -94,17 +100,20 @@
 
 
 
-        // はこ -> エディタ
-        $(document).on('click', '.hako', function() {
-            openEditor($(this));
+
+
+
+
+
+
+
+        // ブロック選択で、エディットモードへ
+        $(document).on('click', '.block', function() {
+            var hako = $(this).find('.hako');
+            openEditor($(hako));
         });
 
 
-
-        // エディタ -> はこ
-        $(document).on('change focusout', '.hako-edit', function() {
-            closeEditor($(this));
-        });
 
         // 全 はこ を閉じる or submit
         $(window).keydown(function(event) {
@@ -135,7 +144,7 @@
             console.log('>> '+y);
 
             // 各オブジェクトの左上座標を取得する
-            var doms = $('.hako');
+            var doms = $('.block');
             console.log(doms.length);
             for (var i=0; i<doms.length; i++) {
                 // 左上座標の取得
@@ -145,8 +154,7 @@
                 // 左上座標を超えたら、その要素の上に挿入する
                 console.log(i+' => '+divy+' > '+ y);
                 if (divy > y) {
-                    var wrap = dom.parents('.card');
-                    createEditor(wrap);
+                    createEditor(dom);
                     return;
                 }
             }
@@ -171,7 +179,7 @@
             var new_dom  = $(new_html);
 
             dom.before(new_dom);
-            dom.ready(function() {
+            new_dom.ready(function() {
                 var choose_dom = new_dom.find('.hako');
                 openEditor(choose_dom);
             });
@@ -185,7 +193,8 @@
             var text = dom.data('content');
 
             // dom 作成
-            var html = '<textarea class="form-control" rows="5"></textarea>';
+            var row = $.str_count(text, /[\n\r]/g) + 3;
+            var html = '<textarea class="form-control" rows="'+row+'"></textarea>';
 
             // dom メタ変更
             var textarea = $(html);
@@ -208,9 +217,11 @@
                 return;
             }
 
+            // dom 作成
+            var html = $.nl2br(text);
 
             // dom 追加
-            dom.empty().append(text);
+            var div = dom.empty().append(html);
 
             // 後処理
             dom.attr('class', 'hako');
