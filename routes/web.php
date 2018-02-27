@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/blog/{name}', 'ViewController')->name('view');
 
 Route::resource('articles', 'ArticleController');
+Route::resource('tags', 'TagController');
 
 
 Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
@@ -26,6 +27,9 @@ Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('
 
 
 
+Route::redirect('/dashboard', '/')->name('dashboard');
 
 
+
+Auth::routes();
 

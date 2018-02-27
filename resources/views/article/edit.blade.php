@@ -1,10 +1,11 @@
 @extends('layouts.hakoditor')
+@section('title', '記事編集')
 
 @section('container')
 
     @component('parts.general-card-component')
         @slot('header')
-            記事情報 編集 or 作成
+            記事編集
         @endslot
 
         {{ Form::openResource('articles', $article->id ?? 0) }}
@@ -30,6 +31,14 @@
             @component('parts.inline-form-component', ['name' => 'is_public', 'label' => '公開する'])
                 {{ Form::hidden('is_public', '0') }}
                 {{ Form::checkbox('is_public', '1', old('is_public', $article->is_public), ['class' => 'form-control']) }}
+            @endcomponent
+
+            @component('parts.general-card-component')
+                @component('parts.inline-form-component', ['name' => 'tag', 'label' => 'タグ'])
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        {!! Form::toggleCheckbox('tags['.$tag->id.']', $tag->tag_path, '1', old('tags['.$tag->id.']', $article->hasManyContains('tags', $tag->id)), [], ['class' => 'btn btn-outline-secondary']) !!}
+                    @endforeach
+                @endcomponent
             @endcomponent
 
             @component('parts.group-form-component')
