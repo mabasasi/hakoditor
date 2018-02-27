@@ -9,48 +9,43 @@
         {{--<!-- Left Element -->--}}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('articles.index') }}">記事一覧</a>
+                <a class="nav-link" href="{{ route('articles.index') }}">記事管理</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('tags.index') }}">タグ管理</a>
             </li>
         </ul>
 
-        {{--<!-- Right Element -->--}}
-        {{--<ul class="navbar-nav">--}}
-            {{--<li class="nav-item">--}}
-                {{--<span class="navbar-text">--}}
-                    {{--@auth--}}
-                        {{--branch: {{ optional(\Auth::user()->currentBranch)->name ?? '-' }},&nbsp;&nbsp;--}}
-                    {{--@endauth--}}
-                    {{--git: {{ git_branch() ?? 'none' }},&nbsp;&nbsp;--}}
-                    {{--env: {{ \Config::get('app.env') }} - {{ \Config::get('app.debug') == 'true' ? 'debug' : '' }}&nbsp;&nbsp;--}}
-                {{--</span>--}}
-            {{--</li>--}}
+        <!-- Right Element -->
+        <ul class="navbar-nav">
 
-            {{--@guest--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="{{ route('login') }}">ログイン</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="{{ route('register') }}">新規登録</a>--}}
-                {{--</li>--}}
-            {{--@else--}}
-                {{--<li class="nav-item dropdown">--}}
-                    {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-                        {{--{{ optional(\Auth::user())->name }}&nbsp;さん--}}
-                    {{--</a>--}}
-                    {{--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">--}}
-                        {{--<a class="dropdown-item" href="{{ route('home') }}">ホーム</a>--}}
-                        {{--<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">--}}
-                            {{--ログアウト--}}
-                        {{--</a>--}}
-                        {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                            {{--{{ csrf_field() }}--}}
-                        {{--</form>--}}
-                    {{--</div>--}}
-                {{--</li>--}}
-            {{--@endcan--}}
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">新規登録</a>
+                </li>
+            @else
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ optional(\Auth::user())->name }}&nbsp;さん
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('home') }}">ホーム</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            ログアウト
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                </li>
+            @endcan
 
-            {{--<span class="mr-3"></span>--}}
+            <span class="mr-3"></span>
 
-        {{--</ul>--}}
+        </ul>
     </div>
 </nav>

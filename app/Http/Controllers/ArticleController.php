@@ -34,7 +34,9 @@ class ArticleController extends Controller {
 
     public function update(ArticleRequest $request, Article $article) {
         \DB::transaction(function() use($request, $article) {
-            return $article->fill($request->all())->save();
+            $array = $article->translate($request);
+            $article->fill($array)->save();
+            $article->tags()->sync(data_get($array, 'tags') ?? []);
         });
 
         return \Redirect::intended('articles.index');
