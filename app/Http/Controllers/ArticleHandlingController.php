@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ArticleHandlingController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
+
     public function __invoke(ArticleHandlingRequest $request, Article $article) {
         \DB::transaction(function() use($request, $article) {
             $data = $request->all();

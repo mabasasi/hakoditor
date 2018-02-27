@@ -11,25 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('page.home');
-})->name('home');
-
-Route::get('/blog/{name}', 'ViewController')->name('view');
-
-Route::resource('articles', 'ArticleController');
-Route::resource('tags', 'TagController');
-
-
-Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
-
-
-
-
-
-Route::redirect('/dashboard', '/')->name('dashboard');
-
-
-
 Auth::routes();
 
+Route::get('/',            'BlogController@index')->name('home');
+Route::get('/hako-ditor',  'BlogController@dashboard')->middleware('auth')->name('dashboard');
+
+Route::get('/blog/{name}', 'BlogController@page')->name('view');
+
+
+
+Route::prefix('hako-ditor')->group(function() {
+
+    Route::resource('articles', 'ArticleController');
+    Route::resource('tags',     'TagController');
+
+    Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
+
+});

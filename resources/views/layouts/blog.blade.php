@@ -2,7 +2,7 @@
 
 @section('body')
     <!-- Navivation Bar -->
-    @includeIf('layouts.navbar')
+    @includeIf('blog.navbar')
 
     @if(request('error') == 'true')
         <!-- Debug Error View-->
