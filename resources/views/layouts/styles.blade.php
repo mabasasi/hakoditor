@@ -19,6 +19,10 @@
         line-height: 16px;
     }
 
+    .card-body-sm {
+        padding: 0.5rem;
+    }
+
     /*fixed bootstrap*/
     .nav-tabs {
         margin: 0 0 0.5rem 0;

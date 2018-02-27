@@ -3,15 +3,6 @@
 
 @section('container')
 
-    <div class="alert alert-info mt-2" role="alert">
-        <ul>
-            <li>編集したい はこ をクリック!</li>
-            <li>[Alt + Enter]で確定</li>
-            <li>[ダブルクリック]で新しい はこ を作成</li>
-            <li>[ドラッグ]で並び替え</li>
-        </ul>
-    </div>
-
     @component('parts.general-card-component')
         {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
 
@@ -37,43 +28,27 @@
     @endcomponent
 
 
-    <div class="row">
-        <div class="col">
+    <h1>{{ $article->title ?? 'No Title' }}</h1>
 
-            <h1>{{ $article->title ?? 'No Title' }}</h1>
+    <hr>
 
-            <div class="hako-area">
-                {{--各 はこ の配置--}}
-                @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
-                    {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
+    <div class="hako-area">
+        {{--各 はこ の配置--}}
+        @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
+            {{-- TODO ここを変更する際は、script も忘れずに変更するべし--}}
 
-                    {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}
-                    {{--<div class="hako" data-content="{{ $hako->content }}">--}}
-                    {{--{{ $hako->content }}--}}
-                    {{--</div>--}}
-                    {{--@endcomponent--}}
-
-                    <div class="card margin bg-light block">
-                        <div class="card-body">
-                            <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
-                                {!! nl2br($hako->content) !!}
-                            </div>
-                        </div>
+            <div class="card margin bg-light block">
+                <div class="card-body">
+                    <div class="hako" data-id="{{ $hako->id }}" data-content="{{ $hako->content }}">
+                        {!! nl2br($hako->content) !!}
                     </div>
-                @endforeach
-
-
-                {{--最下部要素--}}
-                <div id="dummy-last"></div>
+                </div>
             </div>
+        @endforeach
 
-            {{--<hr>--}}
 
-            {{--@component('parts.general-card-component', ['class' => 'bg-light'])--}}
-                {{--{!! json_encode($article->toArray(), JSON_UNESCAPED_UNICODE) !!}--}}
-            {{--@endcomponent--}}
-
-        </div>
+        {{--最下部要素--}}
+        <div id="dummy-last"></div>
     </div>
 
 @endsection
