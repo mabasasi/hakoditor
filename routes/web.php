@@ -25,4 +25,6 @@ Route::prefix('hako-ditor')->group(function() {
 
     Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
 
+    Route::post('/tags/cache', 'TagCacheController')->name('tags.cache');
+
 });
