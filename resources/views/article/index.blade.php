@@ -51,9 +51,9 @@
                                 <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-tr btn-outline-success" role="button" aria-pressed="true">
                                     <i class="fas fa-edit"></i> 情報編集
                                 </a>
-                                <a href="{{ route('articles.destroy', ['article' => $article->id]) }}" class="btn btn-tr btn-danger" role="button" aria-pressed="true">
+                                @component('parts.post-link-component', ['method' => 'DELETE', 'href' => route('articles.destroy', ['article' => $article->id]), 'class' => 'btn btn-tr btn-danger'])
                                     <i class="fas fa-trash"></i> 削除
-                                </a>
+                                @endcomponent
                             </td>
                         </tr>
                     @empty

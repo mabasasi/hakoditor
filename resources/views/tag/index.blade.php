@@ -47,9 +47,9 @@
                                 <a href="{{ route('tags.edit', ['tag' => $tag->id]) }}" class="btn btn-tr btn-success" role="button" aria-pressed="true">
                                     <i class="fas fa-edit"></i> 編集
                                 </a>
-                                <a href="{{ route('tags.destroy', ['tag' => $tag->id]) }}" class="btn btn-tr btn-danger" role="button" aria-pressed="true">
+                                @component('parts.post-link-component', ['method' => 'DELETE', 'href' => route('tags.destroy', ['tag' => $tag->id]), 'class' => 'btn btn-tr btn-danger'])
                                     <i class="fas fa-trash"></i> 削除
-                                </a>
+                                @endcomponent
                             </td>
                         </tr>
                     @empty
