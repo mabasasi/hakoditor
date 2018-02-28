@@ -16,4 +16,14 @@
             @include('blog.module-webmaster')
         </div>
     </div>
+
+    <div class="row">
+        <div class="col">
+            <hr>
+            <footer>
+                COPYRIGHT &#169; 2018 mabasasi.net ALL RIGHTS RESERVED.
+                このページは自動生成されています.
+            </footer>
+        </div>
+    </div>
 @endsection
