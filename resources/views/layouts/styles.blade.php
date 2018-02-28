@@ -63,14 +63,18 @@
         "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo,
         Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 
-        background-color: gainsboro;
+        background-color: #EBEBEB;
+    }
+
+    .navbar {
+        background-color: #FAFAFA;
     }
 
 
     article {
         margin: 15px 0;
         padding: 20px;
-        background-color: whitesmoke;
+        background-color: #FAFAFA;
     }
 
     article h1 {
@@ -84,7 +88,7 @@
 
         margin: 15px 0;
         padding: 10px;
-        background-color: whitesmoke;
+        background-color: #FAFAFA;
 
         text-decoration: none;
         color: black;
@@ -118,7 +122,7 @@
 
         margin: 15px 0;
         padding: 10px;
-        background-color: whitesmoke;
+        background-color: #FAFAFA;
     }
     .article-caption:hover {
         text-decoration: none;
