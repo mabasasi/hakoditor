@@ -4,6 +4,10 @@
 @section('container')
     <div class="row">
         <div class="col-xl-8">
+            @if(request('tag'))
+                @include('blog.module-alert')
+            @endif
+
             @include('blog.module-list')
         </div>
 

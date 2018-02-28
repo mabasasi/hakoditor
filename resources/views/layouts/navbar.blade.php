@@ -33,7 +33,7 @@
                         {{ optional(\Auth::user())->name }}&nbsp;さん
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('home') }}">ホーム</a>
+                        <a class="dropdown-item" href="{{ route('blog') }}">ホーム</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             ログアウト
                         </a>

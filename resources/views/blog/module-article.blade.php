@@ -28,7 +28,7 @@
 
             <div id="article-buttons">
                 @foreach($article->tags as $tag)
-                    <a href="" class="btn btn-sm btn-outline-secondary">{{ $tag->name }}</a>
+                    <a href="{{ route('blog', ['tag' => $tag]) }}" class="btn btn-sm btn-outline-secondary">{{ $tag->name }}</a>
                 @endforeach
             </div>
 

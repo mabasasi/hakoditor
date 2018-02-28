@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class BlogController extends Controller {
 
     public function index() {
-        $articles = Article::paginate(10);
+        $articles = Article::ifRequestWhere('tag', ['tags.tag_id'])
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
         return view('blog.list')->with(compact('articles'));
     }
 

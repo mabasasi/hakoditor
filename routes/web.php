@@ -13,8 +13,8 @@
 
 Auth::routes();
 
-Route::get('/',            'BlogController@index')->name('home');
-Route::get('/list', 'BlogController@list')->name('list');
+Route::get('/',            'BlogController@index')->name('blog');
+//Route::get('/list', 'BlogController@list')->name('list');
 
 Route::get('/blog/{name}', 'BlogController@page')->name('blog.view');
 

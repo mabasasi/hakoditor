@@ -119,4 +119,17 @@
         display: inline-block;
     }
 
+
+
+
+    #alerts {
+        background-color: #28a745;
+        color: white;
+    }
+
+    #alerts .btn-close {
+        line-height: 12px;
+        border: none;
+    }
+
 </style>
