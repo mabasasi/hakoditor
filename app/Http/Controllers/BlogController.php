@@ -12,7 +12,7 @@ class BlogController extends Controller {
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-        return view('blog.list')->with(compact('articles'));
+        return view('blog.page')->with(['mode' => 'list', 'articles' => $articles]);
     }
 
     public function page(string $name) {
@@ -23,7 +23,7 @@ class BlogController extends Controller {
         })->with('hakos')->firstOrFail();
 
         // 記事ジェネレート
-        return view('blog.page')->with(compact('article'));
+        return view('blog.page')->with(['mode' => 'show', 'article' => $article]);
     }
 
 }
