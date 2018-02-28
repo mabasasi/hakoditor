@@ -51,6 +51,10 @@ class Article extends Model {
         return $array;
     }
 
+    public function scopeLatest($query) {
+        $query->orderBy('created_at', 'DESC')->take(5);
+    }
+
     public function getRawContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 

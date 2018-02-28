@@ -16,7 +16,8 @@
 
         <div class="col-xl-4">
             @include('blog.module-webmaster')
-            @include('blog.module-webmaster')
+            @include('blog.module-latest')
+            @include('blog.module-tags')
         </div>
     </div>
 
