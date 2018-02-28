@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-xl-8">
             @if($mode === 'list')
-                @include('blog.module-list')
-            @elseif($mode === 'show')
                 @if(request('tag'))
                     @include('blog.module-alert')
                 @endif
+                @include('blog.module-list')
+            @elseif($mode === 'show')
                 @include('blog.module-article')
             @endif
         </div>

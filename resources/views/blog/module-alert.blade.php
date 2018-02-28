@@ -5,7 +5,7 @@
         <div id="alerts" class="module-area">
             @if(request('tag'))
                 @php($tag = \App\Models\Tag::find(request('tag')))
-                タグ：{{ ($tag) ? $tag->name : '-' }}
+                タグ：{{ ($tag) ? ($tag->path ?? $tag->name) : '-' }}
             @endif
 
             <div class="float-right">
