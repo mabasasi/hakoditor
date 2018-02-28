@@ -19,6 +19,9 @@ class CreateTagTable extends Migration
             $table->string('name');
             $table->unsignedInteger('parent_tag_id')->nullable();
 
+            $table->string('path')->nullable();
+            $table->integer('depth')->nullable()->default(0);
+
             $table->timestamps();
             $table->softDeletes();
 

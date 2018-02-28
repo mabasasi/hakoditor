@@ -24,7 +24,7 @@ class CreateInitialTable extends Migration
         Schema::create('hakos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
-            $table->unsignedInteger('hako_type_id');
+            $table->unsignedInteger('hako_type_id')->nullable();
             $table->text('content');
 
             $table->timestamps();

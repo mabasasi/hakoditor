@@ -34,5 +34,16 @@
         <!-- Scripts -->
         @includeIf('layouts.scripts')
         @stack('scripts')
+
+        {{--デバッグ用リロード JS--}}
+        @if(request('reload') > 0)
+            @push('scripts')
+                <script>
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, "{{ request('reload') }}");
+                </script>
+            @endpush
+        @endif
     </body>
 </html>

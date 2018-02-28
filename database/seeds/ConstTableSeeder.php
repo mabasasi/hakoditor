@@ -29,6 +29,8 @@ class ConstTableSeeder extends Seeder
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+
+        // アドミン USER
         User::create([
             'name' => env('AUTH_USER_NAME'),
             'userid' => env('AUTH_USER_ID'),
@@ -37,6 +39,7 @@ class ConstTableSeeder extends Seeder
         ]);
 
 
+        // 記事種別
         ArticleType::create([
             'id'   => \App\Consts::ARTICLE_TYPE_TEXT,
             'name' => 'テキスト',
@@ -53,11 +56,26 @@ class ConstTableSeeder extends Seeder
         ]);
 
 
-
+        // 箱種別(いらんかも)
         HakoType::create([
             'id'   => \App\Consts::ARTICLE_TYPE_TEXT,
             'name' => 'テキスト',
         ]);
+
+
+
+        // 必須記事
+        $blog = Article::create([
+            'title' => 'このブログについて',
+            'url' => 'about',
+            'article_type_id' => \App\Consts::ARTICLE_TYPE_TEXT,
+            'is_public' => true,
+        ]);
+
+        $hako = Hako::create([
+            'content' => 'ブログの概要',
+        ]);
+        $blog->hakos()->attach([$hako->id => ['order' => 1]]);
 
     }
 }

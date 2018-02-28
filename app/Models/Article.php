@@ -51,6 +51,10 @@ class Article extends Model {
         return $array;
     }
 
+    public function scopeLatest($query) {
+        $query->orderBy('created_at', 'DESC')->take(5);
+    }
+
     public function getRawContentAttribute() {
         // TODO いずれはDBキャッシュ対応させたい
 
@@ -75,6 +79,21 @@ class Article extends Model {
         }
 
         return null;
+    }
+
+    public function getUpdatedAtAttribute($value) {
+        $hako = $this->hakos->sortByDesc('updated_at')->first();
+        return optional($hako)->updated_at;
+    }
+
+    public function getIsUpdate() {
+        $create = $this->created_at;
+        $update = $this->updated_at;
+        if ($create and $update) {
+            return !$create->isSameDay($update);
+        }
+
+        return false;
     }
 
     public function hakos() {

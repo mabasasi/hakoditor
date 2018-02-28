@@ -52,3 +52,100 @@
     }
 
 </style>
+
+{{--ブログ用--}}
+<style>
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",HelveticaNeue,
+        "Segoe UI", "游ゴシック体", YuGothic, "Yu Gothic M", "游ゴシック Medium", "Yu Gothic Medium",
+        "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN W3", HiraKakuProN-W3, "ヒラギノ角ゴ ProN",
+        "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo,
+        Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+        background-color: #EBEBEB;
+    }
+
+    .navbar {
+        background-color: #FAFAFA;
+    }
+
+
+    article {
+        margin: 15px 0;
+        padding: 20px;
+        background-color: #FAFAFA;
+    }
+
+    article h1 {
+        margin: 10px 0;
+    }
+
+
+    .module-area {
+        display: block;
+        width: 100%;
+
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #FAFAFA;
+
+        text-decoration: none;
+        color: black;
+    }
+    a.module-area:hover {
+        text-decoration: none;
+        color: black;
+
+        background-color: floralwhite;
+    }
+
+
+
+
+
+    #time-badges span {
+        margin: 0 5px;
+    }
+
+
+
+
+
+
+    .article-caption {
+        display: block;
+        width: 100%;
+
+        text-decoration: none;
+        color: black;
+
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #FAFAFA;
+    }
+    .article-caption:hover {
+        text-decoration: none;
+        color: black;
+
+        background-color: floralwhite;
+    }
+
+    .article-caption h3 {
+        display: inline-block;
+    }
+
+
+
+
+    #alerts {
+        background-color: #28a745;
+        color: white;
+    }
+
+    #alerts .btn-close {
+        line-height: 12px;
+        border: none;
+    }
+
+</style>
