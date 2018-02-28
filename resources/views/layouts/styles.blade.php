@@ -89,7 +89,7 @@
         text-decoration: none;
         color: black;
     }
-    .module-area:hover {
+    a.module-area:hover {
         text-decoration: none;
         color: black;
 
