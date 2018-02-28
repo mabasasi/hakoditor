@@ -22,6 +22,7 @@ class ArticleHandlingController extends Controller {
             // TODO とりあえず リレーション全削除
             $article->hakos()->detach();
 
+            $syncs = [];
 
             $size = count($data['id']);
             for ($i=0; $i<$size; $i++) {
@@ -36,9 +37,13 @@ class ArticleHandlingController extends Controller {
                     'content'      => $content,
                 ])->save();
 
-                // リレーション更新
-                $article->hakos()->attach($hako->id, ['order' => $order]);
+                // 更新用配列追加
+                $syncs[$id] = ['order' => $order];
             }
+
+            // リレーション更新
+            $article->hakos()->sync($syncs);
+
         });
 
         return back()->with('message', '保存しました.');
