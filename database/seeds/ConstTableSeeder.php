@@ -69,6 +69,7 @@ class ConstTableSeeder extends Seeder
             'title' => 'このブログについて',
             'url' => 'about',
             'article_type_id' => \App\Consts::ARTICLE_TYPE_TEXT,
+            'is_public' => true,
         ]);
 
         $hako = Hako::create([
