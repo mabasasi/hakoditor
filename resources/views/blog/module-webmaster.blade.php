@@ -2,11 +2,13 @@
 <div class="row">
     <div class="col">
 
-        <div id="webmaster" class="module-area">
-            管理者：まばさし (mabasasi)<br>
-            ほげほげほげほげ<br>
-            ほげほげほげ
-        </div>
+        <a href="{{ route('blog.view', ['name'=> 'about']) }}" class="module-area">
+            <div>
+                管理者：まばさし (mabasasi)<br>
+                <i class="fab fa-twitter"></i>：@ついったー<br>
+                <i class="far fa-envelope"></i>：めーる@あどれす.com<br>
+            </div>
+        </a>
 
     </div>
 </div>

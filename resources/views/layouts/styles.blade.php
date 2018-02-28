@@ -79,9 +79,21 @@
 
 
     .module-area {
+        display: block;
+        width: 100%;
+
         margin: 15px 0;
         padding: 10px;
         background-color: whitesmoke;
+
+        text-decoration: none;
+        color: black;
+    }
+    .module-area:hover {
+        text-decoration: none;
+        color: black;
+
+        background-color: floralwhite;
     }
 
 
