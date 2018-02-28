@@ -14,6 +14,10 @@
                     <i class="far fa-save"></i> 保存
                 </button>
 
+                <button id="new-hako" class="btn btn-outline-primary" type="button">
+                    <i class="fas fa-archive"></i> 新しい はこ
+                </button>
+
                 <div class="float-right">
                     <a href="{{ route('articles.show', ['article' => $article->id, 'extend' => request('extend') xor true]) }}" class="btn btn-outline-dark mr-3" area-pressed="true">
                         {{ request('extend') ? 'プレビュー無効化' : 'プレビュー有効化' }}
@@ -125,18 +129,7 @@
             if (event.altKey) {
                 if (event.keyCode === 13) {
                     console.log('new');
-                    var focused = $(':focus');
-
-                    if (focused.is('input, textarea, [contenteditable=true]')) {
-                        // テキストエリアを選択しているならば、自身の下に
-                        var wrap = focused.parents('.block');
-                        createEditor(wrap, true);
-
-                    } else {
-                        // それ以外は最下部に
-                        createEditor($('#dummy-last'));
-                    }
-
+                    autoSwitchCreateEditor();
                     return false;
                 }
             }
@@ -147,6 +140,10 @@
 
 
 
+        // 箱生成
+        $(document).on('click', '#new-hako', function() {
+            autoSwitchCreateEditor();
+        });
 
 
 
@@ -193,6 +190,20 @@
 
 
 
+
+        var autoSwitchCreateEditor = function() {
+            var focused = $(':focus');
+
+            if (focused.is('input, textarea, [contenteditable=true]')) {
+                // テキストエリアを選択しているならば、自身の下に
+                var wrap = focused.parents('.block');
+                createEditor(wrap, true);
+
+            } else {
+                // それ以外は最下部に
+                createEditor($('#dummy-last'));
+            }
+        };
 
 
 
