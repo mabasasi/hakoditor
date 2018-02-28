@@ -13,6 +13,12 @@
         <!-- Right Element -->
         <ul class="navbar-nav">
 
+            @auth
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ route('blog.view', ['name' => 'todo']) }}">TODO</a>
+                </li>
+            @endauth
+
             <li class="nav-item">
                 {{ Form::open(['method' => 'GET', 'url' => route('blog'), 'class' => 'form-inline']) }}
 
