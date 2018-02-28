@@ -49,6 +49,16 @@
     <div class="row">
         <div class="{{ request('extend') ? 'col-6' : 'col' }}">
 
+            {{--アラートがあれば表示--}}
+            @if(\Session::has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endisset
+
             <div class="hako-area">
                 {{--各 はこ の配置--}}
                 @foreach(optional($article->hakos)->sortBy('params.order') as $hako)
@@ -83,6 +93,24 @@
 <script>
     $(function() {
         // card -> card-body -> hako
+
+
+
+
+        // アラート閉じる
+        setTimeout(function() {
+            $(".alert").slideUp(function(dom) {
+                dom.alert('close');
+            });
+        }, 3000);
+
+
+
+
+
+
+
+
 
         $('.hako-area').sortable();
 
