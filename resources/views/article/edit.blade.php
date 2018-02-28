@@ -36,7 +36,7 @@
             @component('parts.general-card-component')
                 @component('parts.inline-form-component', ['name' => 'tag', 'label' => 'タグ'])
                     @foreach(\App\Models\Tag::all() as $tag)
-                        {!! Form::toggleCheckbox('tags['.$tag->id.']', $tag->tag_path, '1', old('tags['.$tag->id.']', $article->hasManyContains('tags', $tag->id)), [], ['class' => 'btn btn-outline-secondary']) !!}
+                        {!! Form::toggleCheckbox('tags['.$tag->id.']', $tag->path, '1', old('tags['.$tag->id.']', $article->hasManyContains('tags', $tag->id)), [], ['class' => 'btn btn-outline-secondary']) !!}
                     @endforeach
                 @endcomponent
             @endcomponent
