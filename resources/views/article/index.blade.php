@@ -46,7 +46,7 @@
                             <td>{{ $article->hasManyImplode('tags', 'name', ', ') ?? '-' }}</td>
                             <td>
                                 <a href="{{ route('articles.show', ['article' => $article->id]) }}" class="btn btn-tr btn-success" role="button" aria-pressed="true">
-                                    <i class="fas fa-newspaper"></i> 記事編集
+                                    <i class="far fa-newspaper"></i> 記事編集
                                 </a>
                                 <a href="{{ route('articles.edit', ['article' => $article->id]) }}" class="btn btn-tr btn-outline-success" role="button" aria-pressed="true">
                                     <i class="fas fa-edit"></i> 情報編集

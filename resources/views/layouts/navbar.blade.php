@@ -27,22 +27,33 @@
             <span class="mr-3"></span>
 
             @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">管理者</a>
-                </li>
             @else
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ optional(\Auth::user())->name }}&nbsp;さん
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('blog') }}">ブログトップ</a>
-                        <a class="dropdown-item" href="{{ route('articles.index') }}">記事管理</a>
-                        <a class="dropdown-item" href="{{ route('tags.index') }}">タグ管理</a>
-                        <a class="dropdown-item" href="{{ route('register') }}">新規登録</a>
+                        <a class="dropdown-item" href="{{ route('blog') }}">
+                            &nbsp;&nbsp;&nbsp;&nbsp; ブログ
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('articles.index') }}">
+                            <i class="far fa-newspaper"></i> 記事管理
+                        </a>
+                        <a class="dropdown-item" href="{{ route('tags.index') }}">
+                            <i class="fas fa-tags"></i> タグ管理
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('register') }}">
+                            &nbsp;&nbsp;&nbsp;&nbsp; 新規登録
+                        </a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            ログアウト
+                            <i class="fas fa-sign-out-alt"></i> ログアウト
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

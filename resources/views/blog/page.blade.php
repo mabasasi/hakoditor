@@ -27,6 +27,9 @@
             <footer>
                 COPYRIGHT &#169; 2018 mabasasi.net ALL RIGHTS RESERVED. <br>
                 このページは自動生成されています.
+                @guest
+                    &nbsp;&nbsp;<a href="{{ route('login') }}">管理者</a>はこちら.
+                @endcan
             </footer>
         </div>
     </div>
