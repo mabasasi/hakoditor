@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller {
 
     public function index() {
+        // TODO 公開範囲設定が適用されていない
         $articles = Article::query()
             ->ifRequestWhere('tag', ['tags.tag_id'])
             ->ifRequestLike('search', ['title', 'url', 'tags.name'])
