@@ -13,6 +13,19 @@
         <!-- Right Element -->
         <ul class="navbar-nav">
 
+            <li class="nav-item">
+                {{ Form::open(['method' => 'GET', 'url' => route('blog'), 'class' => 'form-inline']) }}
+
+                <div class="form-group row">
+                    {{ Form::text('search', old('search'), ['class' => 'form-control mr-sm-2', 'placeholder' => 'Search...']) }}
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+                </div>
+
+                {{ Form::close() }}
+            </li>
+
+            <span class="mr-3"></span>
+
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">管理者</a>

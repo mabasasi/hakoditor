@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xl-8">
             @if($mode === 'list')
-                @if(request('tag'))
+                @if(request('tag') or request('search'))
                     @include('blog.module-alert')
                 @endif
                 @include('blog.module-list')
