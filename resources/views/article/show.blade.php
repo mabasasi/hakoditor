@@ -222,7 +222,7 @@
             var text = dom.data('content');
 
             // dom 作成
-            var row = $.str_count(text, /[\n\r]/g) + 3;
+            var row = $.str_count(text, /[\n\r]/g) + 5;
             var html = '<textarea class="form-control" rows="'+row+'"></textarea>';
 
             // dom メタ変更
