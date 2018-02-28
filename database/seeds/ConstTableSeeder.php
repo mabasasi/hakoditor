@@ -71,6 +71,10 @@ class ConstTableSeeder extends Seeder
             'article_type_id' => \App\Consts::ARTICLE_TYPE_TEXT,
         ]);
 
+        $hako = Hako::create([
+            'content' => 'ブログの概要',
+        ]);
+        $blog->hakos()->attach([$hako->id => ['order' => 1]]);
 
     }
 }
