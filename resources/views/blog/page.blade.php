@@ -1,5 +1,5 @@
 @extends('layouts.blog')
-@section('title', (isset($article)) ? $article->title : '')
+@section('title', ($mode === 'list') ? '記事一覧' : (isset($article) ? $article->title : 'No Title'))
 
 @section('container')
     <div class="row">
