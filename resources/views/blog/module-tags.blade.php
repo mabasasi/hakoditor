@@ -7,8 +7,8 @@
                 @foreach(\App\Models\Tag::orderBy('path')->get() as $tag)
                     <li>
                         <a href="{{ route('blog', ['tag' => $tag->id]) }}">
-                            {{ $tag->name ?? '-' }}
-                        </a>
+                            {{ $tag->path ?? '-' }}
+                        </a> ({{ optional($tag->articles)->count() }})
                     </li>
                 @endforeach
             </ul>

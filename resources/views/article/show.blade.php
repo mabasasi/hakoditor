@@ -10,6 +10,10 @@
             @component('parts.general-card-component')
                 {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
 
+                <a href="{{ route('articles.index') }}" class="btn btn-outline-dark">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+
                 <button id="exec" class="btn btn-primary" type="button">
                     <i class="far fa-save"></i> 保存
                 </button>
