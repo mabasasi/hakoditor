@@ -27,7 +27,12 @@ class ArticleController extends Controller {
         return $this->update($request, new Article());
     }
 
-    public function show(Article $article)    {
+    public function show(Article $article) {
+        // ユーザーに値があるならばセット（上書きはしない）
+        if (\Auth::user()->use_edit_preview) {
+            set_default_request('extend', true);
+        }
+
         return view('article.show')->with(compact('article'));
     }
 

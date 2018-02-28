@@ -42,4 +42,9 @@ class Tag extends Model {
         return $this->hasMany('App\Models\Tag', 'parent_tag_id');
     }
 
+    public function articles() {
+        return $this->belongsToMany('App\Models\Article')
+            ->withTimestamps();
+    }
+
 }

@@ -6,7 +6,12 @@
             <a href="{{ route('blog.view', ['name' => $article->url ?? $article->id]) }}" class="article-caption">
 
                 <div>
-                    <h3>{{ $article->title }}</h3>
+                    <h3>
+                        @if(!$article->is_public)
+                            <span class="badge text-danger"><i class="fas fa-lock"></i></span>
+                        @endif
+                        {{ $article->title }}
+                    </h3>
 
                     <div class="float-right">
                         <span>

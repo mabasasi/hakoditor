@@ -18,7 +18,7 @@ class User extends Model
     use Notifiable;
 
     protected $fillable = [
-        'name', 'userid', 'email', 'password',
+        'name', 'userid', 'email', 'password', 'use_edit_preview',
     ];
 
     protected $hidden = [

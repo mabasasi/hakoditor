@@ -10,8 +10,16 @@
             @component('parts.general-card-component')
                 {{ Form::open(['id' => 'handling', 'method' => 'post', 'url' => route('articles.handling', ['article'=> $article->id])]) }}
 
+                <a href="{{ route('articles.index') }}" class="btn btn-outline-dark">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+
                 <button id="exec" class="btn btn-primary" type="button">
                     <i class="far fa-save"></i> 保存
+                </button>
+
+                <button id="new-hako" class="btn btn-outline-primary" type="button">
+                    <i class="fas fa-archive"></i> 新しい はこ
                 </button>
 
                 <div class="float-right">
@@ -44,6 +52,16 @@
 
     <div class="row">
         <div class="{{ request('extend') ? 'col-6' : 'col' }}">
+
+            {{--アラートがあれば表示--}}
+            @if(\Session::has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endisset
 
             <div class="hako-area">
                 {{--各 はこ の配置--}}
@@ -79,6 +97,24 @@
 <script>
     $(function() {
         // card -> card-body -> hako
+
+
+
+
+        // アラート閉じる
+        setTimeout(function() {
+            $(".alert").slideUp(function(dom) {
+                dom.alert('close');
+            });
+        }, 3000);
+
+
+
+
+
+
+
+
 
         $('.hako-area').sortable();
 
@@ -125,18 +161,7 @@
             if (event.altKey) {
                 if (event.keyCode === 13) {
                     console.log('new');
-                    var focused = $(':focus');
-
-                    if (focused.is('input, textarea, [contenteditable=true]')) {
-                        // テキストエリアを選択しているならば、自身の下に
-                        var wrap = focused.parents('.block');
-                        createEditor(wrap, true);
-
-                    } else {
-                        // それ以外は最下部に
-                        createEditor($('#dummy-last'));
-                    }
-
+                    autoSwitchCreateEditor();
                     return false;
                 }
             }
@@ -147,6 +172,10 @@
 
 
 
+        // 箱生成
+        $(document).on('click', '#new-hako', function() {
+            autoSwitchCreateEditor();
+        });
 
 
 
@@ -194,6 +223,20 @@
 
 
 
+        var autoSwitchCreateEditor = function() {
+            var focused = $(':focus');
+
+            if (focused.is('input, textarea, [contenteditable=true]')) {
+                // テキストエリアを選択しているならば、自身の下に
+                var wrap = focused.parents('.block');
+                createEditor(wrap, true);
+
+            } else {
+                // それ以外は最下部に
+                createEditor($('#dummy-last'));
+            }
+        };
+
 
 
         var createEditor = function(dom, is_after) {
@@ -222,7 +265,7 @@
             var text = dom.data('content');
 
             // dom 作成
-            var row = $.str_count(text, /[\n\r]/g) + 3;
+            var row = $.str_count(text, /[\n\r]/g) + 5;
             var html = '<textarea class="form-control" rows="'+row+'"></textarea>';
 
             // dom メタ変更

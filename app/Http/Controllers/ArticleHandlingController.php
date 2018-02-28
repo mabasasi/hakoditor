@@ -41,7 +41,7 @@ class ArticleHandlingController extends Controller {
             }
         });
 
-        return back();
+        return back()->with('message', '保存しました.');
     }
 
 }

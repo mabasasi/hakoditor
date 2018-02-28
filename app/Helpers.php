@@ -16,21 +16,6 @@
 
 
 
-if (!function_exists('set_default_request')) {
-
-    function set_default_request($key, $value) {
-        if (!\Request::input($key)) {
-            if ($value) {
-                \Request::merge([$key => $value]);
-            }
-        }
-    }
-
-}
-
-
-
-
 
 
 
@@ -118,6 +103,28 @@ if (! function_exists('out_if_true')) {
 
 
 
+if (!function_exists('set_request')) {
+
+    function set_request($key, $value) {
+        if ($value) {
+            \Request::merge([$key => $value]);
+        }
+    }
+
+}
+
+
+if (!function_exists('set_default_request')) {
+
+    function set_default_request($key, $value) {
+        if (is_null(\Request::input($key))) {
+            if ($value) {
+                \Request::merge([$key => $value]);
+            }
+        }
+    }
+
+}
 
 
 
