@@ -15,10 +15,6 @@ class BlogController extends Controller {
         return view('blog.list')->with(compact('articles'));
     }
 
-    public function dashboard() {
-        return view('page.dashboard');
-    }
-
     public function page(string $name) {
         // url か id から 記事を取得
         $article = Article::where(function($query) use($name) {

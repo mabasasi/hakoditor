@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ route('dashboard') }}">{{ config('app.name', 'Laravel') }}</a>
+    <a class="navbar-brand" href="{{ route('blog') }}">まばさし.net</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,13 +8,6 @@
 
         {{--<!-- Left Element -->--}}
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('articles.index') }}">記事管理</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('tags.index') }}">タグ管理</a>
-            </li>
         </ul>
 
         <!-- Right Element -->
@@ -22,10 +15,7 @@
 
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">新規登録</a>
+                    <a class="nav-link" href="{{ route('login') }}">管理者</a>
                 </li>
             @else
                 <li class="nav-item dropdown">
@@ -33,7 +23,11 @@
                         {{ optional(\Auth::user())->name }}&nbsp;さん
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('blog') }}">ホーム</a>
+                        <a class="dropdown-item" href="{{ route('blog') }}">ブログトップ</a>
+                        <a class="dropdown-item" href="{{ route('articles.index') }}">記事管理</a>
+                        <a class="dropdown-item" href="{{ route('tags.index') }}">タグ管理</a>
+                        <a class="dropdown-item" href="{{ route('register') }}">新規登録</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             ログアウト
                         </a>
