@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/', 'BlogController@index')->name('blog');
+
+Route::get('/blog/{name}', 'BlogController@page')->name('blog.view');
+
+
+Route::prefix('hako-ditor')->group(function() {
+
+    Route::resource('articles', 'ArticleController');
+    Route::resource('tags',     'TagController');
+
+    Route::post('/articles/{article}/handling', 'ArticleHandlingController')->name('articles.handling');
+
+    Route::post('/tags/cache', 'TagCacheController')->name('tags.cache');
+
 });
