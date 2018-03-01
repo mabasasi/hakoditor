@@ -41,7 +41,7 @@
                                 </a>
                             </td>
                             <td>{{ optional($article->articleType)->name ?? '-' }}</td>
-                            <td>{!! $article->is_public ? '<i class="fas fa-check"></i>' : '-' !!}</td>
+                            <td>{!! $article->is_public ? '<span class="text-success"><i class="fas fa-check"></i></span>' : '<span class="text-danger"><i class="fas fa-lock"></i></span>' !!}</td>
                             <td>{{ $article->hakos->count() }}</td>
                             <td>{{ $article->hasManyImplode('tags', 'name', ', ') ?? '-' }}</td>
                             <td>
