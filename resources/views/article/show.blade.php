@@ -43,7 +43,12 @@
                 {{ Form::close() }}
             @endcomponent
 
-            <h1>{{ $article->title ?? 'No Title' }}</h1>
+            <h1>
+                @if(!$article->is_public)
+                    <span class="badge text-danger"><i class="fas fa-lock"></i></span>
+                @endif
+                {{ $article->title ?? 'No Title' }}
+            </h1>
 
             <hr>
         </div>
