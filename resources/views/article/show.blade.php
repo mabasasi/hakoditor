@@ -114,13 +114,7 @@
         }, 3000);
 
 
-
-
-
-
-
-
-
+        // 並び替え実装 (JQuery UI)
         $('.hako-area').sortable();
 
         // submit
@@ -140,6 +134,9 @@
                 var id      = dom.data('id') || 0;
                 var content = dom.data('content') || '';
                 var order   = cnt ++;
+
+                // コンテンツエスケープ
+                content = escapeHtml(content);
 
                 form.append('<input type="hidden" name="id['+i+']" value="'+id+'">');
                 form.append('<input type="hidden" name="content['+i+']" value="'+content+'">');
@@ -306,6 +303,24 @@
 
             console.log('close');
         };
+
+
+
+
+
+
+
+
+
+        var escapeHtml = function(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        };
+
 
     });
 </script>

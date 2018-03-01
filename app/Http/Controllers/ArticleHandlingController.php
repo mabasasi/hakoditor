@@ -30,6 +30,9 @@ class ArticleHandlingController extends Controller {
                 $content = data_get($data, 'content.' .$i);
                 $order   = data_get($data, 'order.'   .$i);
 
+                // コンテンツのエスケープ解除
+                $content = $this->unescapeHtml($content);
+
                 // はこ の保存
                 $hako = Hako::findOrNew($id);
                 $hako->fill([
@@ -47,6 +50,26 @@ class ArticleHandlingController extends Controller {
         });
 
         return back()->with('message', '保存しました.');
+    }
+
+
+
+
+    private $escape_map = [
+        '&amp;'  => '&',
+        '&lt;'   => '<',
+        '&gt;'   => '>',
+        '&quot;' => '"',
+        '&#039;' => '\'',
+    ];
+
+    private function unescapeHtml($text) {
+        if ($text) {
+            foreach ($this->escape_map as $search => $replace) {
+                $text = str_replace($search, $replace, $text);
+            }
+        }
+        return $text;
     }
 
 }
