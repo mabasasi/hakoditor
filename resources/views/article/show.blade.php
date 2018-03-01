@@ -118,6 +118,15 @@
 
         // submit
         $(document).on('click', '#exec', function() {
+
+            // 全体を暗くする（操作禁止）
+            var loader = '<div class="loader-screen" style="display: none"><div class="loader">Loading...</div></div>';
+            var dd = $(loader);
+            $('body').append(dd);
+            dd.fadeIn();
+
+
+
             var form = $('form#handling');
 
             // 先に、すべてのブロックを閉じておく
@@ -144,11 +153,6 @@
 
             form.submit();
 
-            // 全体を暗くする
-            var loader = '<div class="loader-screen" style="display: none"><div class="loader">Loading...</div></div>';
-            var dd = $(loader);
-            $('body').append(dd);
-            dd.fadeIn();
         });
 
 
