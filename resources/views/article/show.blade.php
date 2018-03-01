@@ -105,7 +105,6 @@
 
 
 
-
         // アラート閉じる
         setTimeout(function() {
             $(".alert").slideUp(function(dom) {
@@ -144,6 +143,12 @@
             });
 
             form.submit();
+
+            // 全体を暗くする
+            var loader = '<div class="loader-screen" style="display: none"><div class="loader">Loading...</div></div>';
+            var dd = $(loader);
+            $('body').append(dd);
+            dd.fadeIn();
         });
 
 
