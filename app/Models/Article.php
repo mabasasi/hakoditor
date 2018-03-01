@@ -81,16 +81,16 @@ class Article extends Model {
         return null;
     }
 
-    public function getUpdatedAtAttribute($value) {
+    public function getHakoUpdatedAtAttribute() {
         $hako = $this->hakos->sortByDesc('updated_at')->first();
-        return optional($hako)->updated_at;
+        return ($hako) ? $hako->updated_at : null;
     }
 
-    public function getIsUpdate() {
+    public function getIsUpdateAttribute() {
         $create = $this->created_at;
-        $update = $this->updated_at;
-        if ($create and $update) {
-            return !$create->isSameDay($update);
+        $hako_update = $this->hako_updated_at;
+        if ($create and $hako_update) {
+            return !$create->isSameDay($hako_update);
         }
 
         return false;

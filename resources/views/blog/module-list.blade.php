@@ -19,7 +19,7 @@
                         </span>
                         @if($article->is_update)
                             <span>
-                                <i class="fas fa-wrench"></i> {{ optional($article->updated_at)->toDateString() }}
+                                <i class="fas fa-wrench"></i> {{ optional($article->hako_updated_at)->toDateString() }}
                             </span>
                         @endif
                     </div>
