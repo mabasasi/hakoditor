@@ -22,12 +22,16 @@ class ArticleHandlingController extends Controller {
             // TODO とりあえず リレーション全削除
             $article->hakos()->detach();
 
+            $syncs = [];
 
             $size = count($data['id']);
             for ($i=0; $i<$size; $i++) {
                 $id      = data_get($data, 'id.'      .$i);
                 $content = data_get($data, 'content.' .$i);
                 $order   = data_get($data, 'order.'   .$i);
+
+                // コンテンツのエスケープ解除
+                $content = $this->unescapeHtml($content);
 
                 // はこ の保存
                 $hako = Hako::findOrNew($id);
@@ -36,12 +40,36 @@ class ArticleHandlingController extends Controller {
                     'content'      => $content,
                 ])->save();
 
-                // リレーション更新
-                $article->hakos()->attach($hako->id, ['order' => $order]);
+                // 更新用配列追加
+                $syncs[$id] = ['order' => $order];
             }
+
+            // リレーション更新
+            $article->hakos()->sync($syncs);
+
         });
 
         return back()->with('message', '保存しました.');
+    }
+
+
+
+
+    private $escape_map = [
+        '&amp;'  => '&',
+        '&lt;'   => '<',
+        '&gt;'   => '>',
+        '&quot;' => '"',
+        '&#039;' => '\'',
+    ];
+
+    private function unescapeHtml($text) {
+        if ($text) {
+            foreach ($this->escape_map as $search => $replace) {
+                $text = str_replace($search, $replace, $text);
+            }
+        }
+        return $text;
     }
 
 }

@@ -68,7 +68,22 @@
 
     .navbar {
         background-color: #FAFAFA;
+        border-bottom: solid 1px #808080;
+        opacity: 0.95;
     }
+
+
+    main {
+        margin-top: 56px;
+    }
+
+
+
+
+
+
+
+
 
 
     article {
