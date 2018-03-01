@@ -41,7 +41,7 @@ class ArticleHandlingController extends Controller {
                 ])->save();
 
                 // 更新用配列追加
-                $syncs[$id] = ['order' => $order];
+                $syncs[$hako->id] = ['order' => $order];
             }
 
             // リレーション更新
