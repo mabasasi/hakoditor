@@ -56,7 +56,7 @@
 
 
     <div class="row">
-        <div class="{{ request('extend') ? 'col-6' : 'col' }}">
+        <div class="{{ request('extend') ? 'col-md-6' : 'col' }}">
 
             {{--アラートがあれば表示--}}
             @if(\Session::has('message'))
@@ -89,7 +89,7 @@
         </div>
 
         @if(request('extend'))
-            <div class="col-6">
+            <div class="col-md-6">
                 @include('blog.module-article', ['article' => $article])
             </div>
         @endif
